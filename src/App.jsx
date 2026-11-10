@@ -8,13 +8,82 @@ import AssistantDrawer from './components/AssistantDrawer.jsx';
 import { DIA_AGENTS, MOCK_TABS } from './services/agentRegistry.js';
 import confetti from 'canvas-confetti';
 
+const DEFAULT_ARTIFACTS = [
+  {
+    id: 'art-1',
+    type: 'slide-kit',
+    title: 'SAFe® 6.0 Program Increment Executive Briefing',
+    agent: 'slide-kit',
+    createdAt: new Date().toISOString(),
+    slides: [
+      {
+        id: 1,
+        title: 'Agile Release Train Delivery Predictability',
+        subtitle: 'Quarterly PI Execution Across 4 Engineering Squads',
+        bullets: [
+          '48 Story Points committed across Payments, Mobile, and Core Platform',
+          'Zero release blockers through early cross-team red string resolution',
+          'Sustained 98% delivery predictability score'
+        ],
+        metric: '98%',
+        metricLabel: 'Predictability',
+        speakerNotes: 'Highlight to leadership that cross-squad dependencies were identified during day 1 breakout sessions.'
+      },
+      {
+        id: 2,
+        title: 'ROAM Risk Matrix & Critical Path Analysis',
+        subtitle: 'Proactive Impediment Elimination',
+        bullets: [
+          'Resolved: EKS Multi-Region disaster recovery cutover tested',
+          'Owned: PCI-DSS Level 1 compliance logging assigned to Sarah Chen',
+          'Mitigated: Real-time fraud detection decoupled with circuit-breaker'
+        ],
+        metric: '48h',
+        metricLabel: 'Avg Resolution SLA',
+        speakerNotes: 'Walk executives through the ROAM matrix to show transparency and accountability.'
+      },
+      {
+        id: 3,
+        title: 'Innovation & Planning (IP) Sprint Preservation',
+        subtitle: 'Sprint 5 Dedicated Hardening & Architecture Runway',
+        bullets: [
+          'No user stories scheduled into Sprint 5 to maintain buffer capacity',
+          'React Native 0.76 upgrade hackathon completed by Mobile Squad',
+          'Chaos engineering gameday validated failover under 3.5s'
+        ],
+        metric: '100%',
+        metricLabel: 'IP Buffer Held',
+        speakerNotes: 'Emphasize that protecting the IP sprint prevented team burnout and technical debt.'
+      }
+    ]
+  },
+  {
+    id: 'art-2',
+    type: 'report-kit',
+    title: 'Dia Browser Forensic Architecture & Multi-Agent Deep Dive',
+    agent: 'clia-brief',
+    createdAt: new Date().toISOString(),
+    content: `# Forensic Reverse Engineering Memo: Dia Browser
+**Author:** Balaji Palani (Senior Scrum Master & Agile Solution Architect)  
+**Target:** The Browser Company of New York (Dia Browser v1.55.1)
+
+---
+
+### Executive Findings
+1. **Agent Engine:** Uses Bun runtime executing a custom Anthropic Claude Code harness (v2.1.296) constrained by macOS Seatbelt kernel sandboxes.
+2. **On-Device ML:** Integrates Apple MLX and Hugging Face Transformers directly on Apple Silicon M-series memory for zero-latency DOM classification.
+3. **Multi-Agent Orchestration:** Deploys 43 specialized subagents including Clia (executive briefs), Desk (task flow), and Meeting Watcher (Zoom/calendar).
+4. **Agile Integration:** Includes native tool schemas for Atlassian Jira, Confluence, Linear, Notion, and Slack.`
+  }
+];
+
 export default function App() {
   const [tabs, setTabs] = useState(MOCK_TABS);
   const [activeTabId, setActiveTabId] = useState(MOCK_TABS[0].id);
   const [activeAgent, setActiveAgent] = useState(DIA_AGENTS[0]);
   const queryView = new URLSearchParams(window.location.search).get('view');
   const [activeView, setActiveView] = useState(queryView || 'canvas'); // 'canvas' | 'artifacts' | 'terminal'
-  const [artifacts, setArtifacts] = useState([]);
+  const [artifacts, setArtifacts] = useState(DEFAULT_ARTIFACTS);
   const [messages, setMessages] = useState([]);
   const [isStreaming, setIsStreaming] = useState(false);
   const [streamedText, setStreamedText] = useState('');

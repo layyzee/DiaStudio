@@ -149,10 +149,28 @@ export default function ArtifactStage({ artifacts = [], onCreateSlideDeck, onCre
         
         {/* MODE A: SLIDEKIT DECK VIEWER */}
         {activeArtifactTab === 'slide-kit' && (
-          <div className="w-full flex flex-col items-center space-y-4">
-            
-            {/* 16:9 Presentation Slide Canvas */}
-            <div className="w-full aspect-[16/9] max-h-[520px] rounded-3xl bg-gradient-to-b from-[#131a2e] to-[#0d1222] border border-white/[0.12] p-8 sm:p-12 flex flex-col justify-between shadow-2xl relative overflow-hidden group">
+          slideDecks.length === 0 ? (
+            <div className="w-full aspect-[16/9] max-h-[520px] rounded-3xl bg-[#0e1424] border border-white/[0.1] p-12 flex flex-col items-center justify-center text-center">
+              <div className="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-400 border border-purple-500/20 flex items-center justify-center mb-4">
+                <Presentation className="w-7 h-7" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">No SlideKit Decks Generated Yet</h3>
+              <p className="text-xs text-slate-400 max-w-sm mb-6">
+                Dia SlideKit generates executive slide decks from your active tabs and research context.
+              </p>
+              <button
+                onClick={onCreateSlideDeck}
+                className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-lg shadow-purple-600/30 flex items-center gap-2"
+              >
+                <Sparkles className="w-4 h-4" />
+                <span>Generate Executive Slide Deck</span>
+              </button>
+            </div>
+          ) : (
+            <div className="w-full flex flex-col items-center space-y-4">
+              
+              {/* 16:9 Presentation Slide Canvas */}
+              <div className="w-full aspect-[16/9] max-h-[520px] rounded-3xl bg-gradient-to-b from-[#131a2e] to-[#0d1222] border border-white/[0.12] p-8 sm:p-12 flex flex-col justify-between shadow-2xl relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-80 h-80 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
               
               {/* Slide Header & Metric */}
@@ -257,10 +275,29 @@ export default function ArtifactStage({ artifacts = [], onCreateSlideDeck, onCre
             </div>
 
           </div>
+          )
         )}
 
         {/* MODE B: REPORTKIT MEMO VIEWER */}
         {activeArtifactTab === 'report-kit' && (
+          reports.length === 0 ? (
+            <div className="w-full bg-[#101628] border border-white/[0.1] rounded-3xl p-12 flex flex-col items-center justify-center text-center">
+              <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center mb-4">
+                <FileText className="w-7 h-7" />
+              </div>
+              <h3 className="text-lg font-bold text-white mb-2">No Executive Reports Generated Yet</h3>
+              <p className="text-xs text-slate-400 max-w-sm mb-6">
+                Dia ReportKit synthesizes multi-tab findings into structured markdown investigation memos.
+              </p>
+              <button
+                onClick={onCreateReport}
+                className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-lg shadow-indigo-600/30 flex items-center gap-2"
+              >
+                <Sparkles className="w-4 h-4" />
+                <span>Generate Investigation Memo</span>
+              </button>
+            </div>
+          ) : (
           <div className="w-full bg-[#101628] border border-white/[0.1] rounded-3xl p-8 sm:p-10 shadow-2xl relative">
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/[0.08]">
               <div>
@@ -302,6 +339,7 @@ export default function ArtifactStage({ artifacts = [], onCreateSlideDeck, onCre
               {activeReport?.content}
             </div>
           </div>
+          )
         )}
 
       </div>
