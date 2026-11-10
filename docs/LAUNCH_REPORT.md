@@ -2,6 +2,7 @@
 
 **Architected by Balaji Palani** (Senior Scrum Master / Technical Agile Delivery Lead, CSM®, SAFe® 6 SSM)  
 **Workspace:** [`/Users/layyzee/Downloads/DiaStudio`](file:///Users/layyzee/Downloads/DiaStudio)  
+**Live Production URL:** [https://diastudio.onrender.com](https://diastudio.onrender.com)  
 **Local Engine:** `http://localhost:5183`  
 **Deployment Blueprint:** [`render.yaml`](file:///Users/layyzee/Downloads/DiaStudio/render.yaml)  
 

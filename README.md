@@ -2,7 +2,8 @@
 
 > An open, production-ready reconstruction of The Browser Company's **Dia Browser** (`company.thebrowser.dia`), reverse-engineered from macOS ARM64 binaries and bundle resources. Features an integrated multi-agent orchestrator, numbered DOM element browser automation, generative `slide-kit` and `report-kit` deliverables, and native Agile delivery tooling.
 
-Architected by **Balaji Palani** (Senior Scrum Master / Technical Agile Delivery Lead, CSM®, SAFe® 6 SSM).
+Architected by **Balaji Palani** (Senior Scrum Master / Technical Agile Delivery Lead, CSM®, SAFe® 6 SSM).  
+**Live Cloud URL:** [https://diastudio.onrender.com](https://diastudio.onrender.com)
 
 ---
 
