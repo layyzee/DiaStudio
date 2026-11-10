@@ -9,11 +9,13 @@ Architected by **Balaji Palani** (Senior Scrum Master / Technical Agile Delivery
 
 ## 🌟 Key Capabilities
 
+- 🌐 **Live Real URL Browsing & Scraping:** Enter any real URL (e.g. `github.com`) into the interactive Omnibar; the backend crawler extracts metadata and numbers interactable DOM elements for autonomous `browser-use` execution.
+- 🎯 **Interactive "Push to Jira" & RFC 4180 CSV:** Converts any active tab into a complete SAFe 6.0 User Story (Role-Capability-Benefit, Given-When-Then Acceptance Criteria, Definition of Ready Quality Gate) with 1-click download of Jira-compliant RFC 4180 CSV files.
+- 📽️ **Standalone HTML Presentation Exporter:** Compiles any SlideKit deck into an offline, self-contained single-file HTML slide deck with full-screen mode, keyboard arrow navigation (`←`, `→`, `Space`), metrics, and talk tracks.
 - 🤖 **Reverse-Engineered Multi-Agent Architecture:** Deploys Dia's specialized subagent hierarchy (**Clia Brief**, **Desk Workflow**, **Meeting Watcher**, **SlideKit**, **Autonomous Web Agent**, and **Agile Copilot**).
-- 🌐 **Interactive Web Canvas & DOM Inspector:** Real-time web view with numbered DOM element tagging extracted from Dia's `browser-use.md` protocol.
 - 🔑 **Human-in-the-Loop Handoff:** Built-in simulated 2FA / CAPTCHA handoff mechanism that pauses autonomous agents for user authentication and resumes work seamlessly.
 - 📊 **Generative SlideKit Deck Viewer:** Interactive 16:9 presentation slide carousel with metrics, bullet points, and speaker notes.
-- 📝 **ReportKit Executive Memos:** Structured investigative reports with 1-click clipboard export.
+- 📝 **ReportKit Executive Memos:** Structured investigative reports with 1-click clipboard export and Markdown download.
 - 🛡️ **Forensic Agent Sandbox:** Visualizer for macOS Seatbelt kernel profiles, Bun runtime IPC, and Apple Silicon MLX local inference telemetry.
 
 ---

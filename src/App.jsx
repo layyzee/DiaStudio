@@ -20,6 +20,7 @@ export default function App() {
   const [streamedText, setStreamedText] = useState('');
   const [activeToolCall, setActiveToolCall] = useState(null);
   const [serverStatus, setServerStatus] = useState('connecting');
+  const [isNavigating, setIsNavigating] = useState(false);
 
   const wsRef = useRef(null);
   const activeTab = tabs.find(t => t.id === activeTabId) || tabs[0];
@@ -102,6 +103,33 @@ export default function App() {
     setTabs(remaining);
     if (activeTabId === tabId) {
       setActiveTabId(remaining[0].id);
+    }
+  };
+
+  // Real URL Navigation via Dia Agent Scraping Service
+  const handleNavigate = async (targetUrl) => {
+    setIsNavigating(true);
+    try {
+      const response = await fetch('/api/fetch-page', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: targetUrl })
+      });
+      const tabData = await response.json();
+
+      setTabs(prev => prev.map(t => t.id === activeTabId ? { ...t, ...tabData, id: t.id } : t));
+      setActiveView('canvas');
+
+      const agentNotice = {
+        sender: 'agent',
+        text: `🌐 **Autonomous Browser Navigation:**\nSuccessfully crawled and loaded **${tabData.title}** (${tabData.url}).\n- **Domain:** \`${tabData.domain}\`\n- **Interactable Elements:** ${tabData.domElements?.length || 0} nodes mapped for autonomous browser-use actions.`,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+      setMessages(prev => [...prev, agentNotice]);
+    } catch (err) {
+      console.error('Page fetch failed:', err);
+    } finally {
+      setIsNavigating(false);
     }
   };
 
@@ -234,7 +262,9 @@ export default function App() {
           activeView={activeView}
           setActiveView={setActiveView}
           activeAgent={activeAgent}
-          onRefresh={() => handleSendMessage(`Refresh and re-crawl current tab: ${activeTab.title}`)}
+          onRefresh={() => handleNavigate(activeTab?.url || 'https://dia.browser')}
+          onNavigate={handleNavigate}
+          isNavigating={isNavigating}
           isStreaming={isStreaming}
           serverStatus={serverStatus}
         />

@@ -8,17 +8,21 @@ import {
   Check, 
   Sparkles, 
   Maximize2, 
-  Download,
-  Calendar,
-  Layers,
-  Award
+  Download, 
+  Calendar, 
+  Layers, 
+  Award,
+  FileCode
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { generateStandalonePresentationHtml } from '../utils/presentationExporter.js';
 
 export default function ArtifactStage({ artifacts = [], onCreateSlideDeck, onCreateReport }) {
   const [activeArtifactTab, setActiveArtifactTab] = useState('slide-kit');
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [copied, setCopied] = useState(false);
+  const [downloadedHtml, setDownloadedHtml] = useState(false);
+  const [downloadedMd, setDownloadedMd] = useState(false);
 
   // Filter artifacts by type
   const slideDecks = artifacts.filter(a => a.type === 'slide-kit');
@@ -40,6 +44,47 @@ export default function ArtifactStage({ artifacts = [], onCreateSlideDeck, onCre
     if (currentSlideIndex > 0) {
       setCurrentSlideIndex(currentSlideIndex - 1);
     }
+  };
+
+  const handleExportHtml = () => {
+    if (!activeDeck) return;
+    const htmlContent = generateStandalonePresentationHtml(activeDeck);
+    const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    const sanitizedTitle = (activeDeck.title || 'DiaStudio_Presentation')
+      .replace(/[^a-zA-Z0-9_-]/g, '_')
+      .toLowerCase();
+    link.setAttribute('download', `${sanitizedTitle}.html`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    setDownloadedHtml(true);
+    confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } });
+    setTimeout(() => setDownloadedHtml(false), 2500);
+  };
+
+  const handleDownloadReport = () => {
+    if (!activeReport?.content) return;
+    const blob = new Blob([activeReport.content], { type: 'text/markdown;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    const sanitizedTitle = (activeReport.title || 'DiaStudio_Report')
+      .replace(/[^a-zA-Z0-9_-]/g, '_')
+      .toLowerCase();
+    link.setAttribute('download', `${sanitizedTitle}.md`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    setDownloadedMd(true);
+    confetti({ particleCount: 40, spread: 60, origin: { y: 0.7 } });
+    setTimeout(() => setDownloadedMd(false), 2500);
   };
 
   const handleCopyReport = () => {
@@ -161,8 +206,8 @@ export default function ArtifactStage({ artifacts = [], onCreateSlideDeck, onCre
               )}
             </div>
 
-            {/* Slide Navigation Controls */}
-            <div className="flex items-center justify-between w-full px-2">
+            {/* Slide Navigation Controls & Standalone HTML Export */}
+            <div className="flex flex-wrap items-center justify-between gap-3 w-full px-2">
               <div className="flex items-center gap-2">
                 <button
                   onClick={handlePrevSlide}
@@ -197,6 +242,18 @@ export default function ArtifactStage({ artifacts = [], onCreateSlideDeck, onCre
                   />
                 ))}
               </div>
+
+              {/* Standalone HTML Deck Export Button */}
+              <div>
+                <button
+                  onClick={handleExportHtml}
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs font-mono transition-all flex items-center gap-1.5 shadow-lg shadow-purple-600/25 border border-purple-400/30"
+                  title="Export offline, full-screen HTML presentation with keyboard arrow navigation"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>{downloadedHtml ? 'Exported HTML Deck!' : 'Export Presentation (HTML)'}</span>
+                </button>
+              </div>
             </div>
 
           </div>
@@ -221,13 +278,24 @@ export default function ArtifactStage({ artifacts = [], onCreateSlideDeck, onCre
                 </div>
               </div>
 
-              <button
-                onClick={handleCopyReport}
-                className="px-3.5 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 text-xs font-mono transition-all flex items-center gap-1.5"
-              >
-                {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-                <span>{copied ? 'Copied!' : 'Copy Markdown'}</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleDownloadReport}
+                  className="px-3.5 py-2 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] text-slate-200 border border-white/[0.08] text-xs font-mono transition-all flex items-center gap-1.5"
+                  title="Download report as markdown file"
+                >
+                  {downloadedMd ? <Check className="w-4 h-4 text-emerald-400" /> : <Download className="w-4 h-4" />}
+                  <span>{downloadedMd ? 'Saved .md!' : 'Download .md'}</span>
+                </button>
+
+                <button
+                  onClick={handleCopyReport}
+                  className="px-3.5 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 text-xs font-mono transition-all flex items-center gap-1.5"
+                >
+                  {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                  <span>{copied ? 'Copied!' : 'Copy Markdown'}</span>
+                </button>
+              </div>
             </div>
 
             <div className="prose prose-invert max-w-none text-slate-200 text-sm leading-relaxed whitespace-pre-line font-light">

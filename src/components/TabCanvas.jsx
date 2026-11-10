@@ -12,14 +12,19 @@ import {
   Sparkles,
   ArrowRight,
   Send,
-  Plus
+  Plus,
+  FileSpreadsheet
 } from 'lucide-react';
+import JiraExportModal from './JiraExportModal.jsx';
 
 export default function TabCanvas({ activeTab, onDomElementClick, onSendToAgent }) {
   const [showDomNumbers, setShowDomNumbers] = useState(true);
   const [handoffActive, setHandoffActive] = useState(false);
   const [handoffCompleted, setHandoffCompleted] = useState(false);
   const [clickedElementId, setClickedElementId] = useState(null);
+  const [isJiraModalOpen, setIsJiraModalOpen] = useState(
+    new URLSearchParams(window.location.search).get('jira') === 'true'
+  );
 
   const handleElementClick = (elem) => {
     setClickedElementId(elem.id);
@@ -230,9 +235,10 @@ export default function TabCanvas({ activeTab, onDomElementClick, onSendToAgent 
             </button>
 
             <button
-              onClick={() => onSendToAgent(`Convert ${activeTab?.title} insights into a Jira user story with acceptance criteria`)}
-              className="px-3 py-1.5 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 text-xs font-mono transition-all flex items-center gap-1.5"
+              onClick={() => setIsJiraModalOpen(true)}
+              className="px-3.5 py-1.5 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 text-xs font-mono transition-all flex items-center gap-1.5 shadow-sm"
             >
+              <FileSpreadsheet className="w-3.5 h-3.5" />
               <span>Push to Jira</span>
               <ArrowRight className="w-3 h-3" />
             </button>
@@ -240,6 +246,14 @@ export default function TabCanvas({ activeTab, onDomElementClick, onSendToAgent 
         </div>
 
       </div>
+
+      {/* Interactive Jira Export Modal */}
+      <JiraExportModal
+        activeTab={activeTab}
+        isOpen={isJiraModalOpen}
+        onClose={() => setIsJiraModalOpen(false)}
+        onSendToAgent={onSendToAgent}
+      />
     </div>
   );
 }
