@@ -47,10 +47,10 @@ export default function Sidebar({
             </div>
             <div>
               <h1 className="text-sm font-bold text-white tracking-tight flex items-center gap-1.5">
-                Dia Studio
-                <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-normal">v1.55</span>
+                AgileLens AI
+                <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-normal">v2.0</span>
               </h1>
-              <p className="text-[10px] text-slate-400 font-mono">Agentic Workplace Browser</p>
+              <p className="text-[10px] text-slate-400 font-mono">Sprint Intelligence Workstation</p>
             </div>
           </div>
           <button 
@@ -118,7 +118,7 @@ export default function Sidebar({
           {/* 2. Reverse-Engineered Agent Roster */}
           <div className="space-y-2 pt-2 border-t border-white/[0.06]">
             <div className="px-2 text-[10px] font-mono uppercase tracking-wider text-slate-400 flex items-center justify-between">
-              <span>Dia Subagents ({agents.length})</span>
+              <span>Delivery Subagents ({agents.length})</span>
               <span className="text-[9px] text-purple-400">Claude Code</span>
             </div>
 

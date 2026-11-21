@@ -1,6 +1,6 @@
-# 🔮 Dia Studio — Reconstructed AI Browser & Multi-Agent Workstation
+# 🔍 AgileLens AI — Autonomous Backlog & Sprint Deck Workstation
 
-> An open, production-ready reconstruction of The Browser Company's **Dia Browser** (`company.thebrowser.dia`), reverse-engineered from macOS ARM64 binaries and bundle resources. Features an integrated multi-agent orchestrator, numbered DOM element browser automation, generative `slide-kit` and `report-kit` deliverables, and native Agile delivery tooling.
+> An AI-powered delivery workstation architected for Agile engineering leaders and Product Owners. Ingests live web applications, Figma designs, and feature PRDs to autonomously synthesize INVEST-compliant Jira user stories, BDD acceptance criteria, definition-of-ready quality gates, and executive Sprint Review slide decks.
 
 Architected by **Balaji Palani** (Senior Scrum Master / Technical Agile Delivery Lead, CSM®, SAFe® 6 SSM).  
 **Live Cloud URL:** [https://diastudio.onrender.com](https://diastudio.onrender.com)
@@ -9,14 +9,13 @@ Architected by **Balaji Palani** (Senior Scrum Master / Technical Agile Delivery
 
 ## 🌟 Key Capabilities
 
-- 🌐 **Live Real URL Browsing & Scraping:** Enter any real URL (e.g. `github.com`) into the interactive Omnibar; the backend crawler extracts metadata and numbers interactable DOM elements for autonomous `browser-use` execution.
-- 🎯 **Interactive "Push to Jira" & RFC 4180 CSV:** Converts any active tab into a complete SAFe 6.0 User Story (Role-Capability-Benefit, Given-When-Then Acceptance Criteria, Definition of Ready Quality Gate) with 1-click download of Jira-compliant RFC 4180 CSV files.
-- 📽️ **Standalone HTML Presentation Exporter:** Compiles any SlideKit deck into an offline, self-contained single-file HTML slide deck with full-screen mode, keyboard arrow navigation (`←`, `→`, `Space`), metrics, and talk tracks.
-- 🤖 **Reverse-Engineered Multi-Agent Architecture:** Deploys Dia's specialized subagent hierarchy (**Clia Brief**, **Desk Workflow**, **Meeting Watcher**, **SlideKit**, **Autonomous Web Agent**, and **Agile Copilot**).
+- 🎯 **Interactive "Push to Jira" & RFC 4180 CSV:** Converts any active tab into a complete SAFe 6.0 User Story (Role-Capability-Benefit, Given-When-Then BDD Acceptance Criteria, Definition of Ready Quality Gate) with 1-click download of Jira-compliant RFC 4180 CSV files.
+- 📽️ **Standalone HTML Presentation Exporter (SlideKit):** Compiles sprint updates into an offline, self-contained single-file HTML slide deck with full-screen mode, keyboard arrow navigation (`←`, `→`, `Space`), delivery metrics, and speaker talk tracks.
+- 📝 **ReportKit Executive Delivery Memos:** Structured investigative status reports with 1-click clipboard export and Markdown download for VP briefings.
+- 🌐 **Live Real URL Browsing & Spec Extraction:** Enter any product URL into the Omnibar; the crawler extracts metadata and numbers interactable DOM elements for autonomous sprint spec synthesis.
+- 🤖 **Autonomous Agile Copilot Fleet:** Deploys specialized delivery subagents (**Agile Copilot**, **Backlog Synthesizer**, **Meeting Watcher**, **SlideKit**, and **Autonomous Web Agent**).
 - 🔑 **Human-in-the-Loop Handoff:** Built-in simulated 2FA / CAPTCHA handoff mechanism that pauses autonomous agents for user authentication and resumes work seamlessly.
-- 📊 **Generative SlideKit Deck Viewer:** Interactive 16:9 presentation slide carousel with metrics, bullet points, and speaker notes.
-- 📝 **ReportKit Executive Memos:** Structured investigative reports with 1-click clipboard export and Markdown download.
-- 🛡️ **Forensic Agent Sandbox:** Visualizer for macOS Seatbelt kernel profiles, Bun runtime IPC, and Apple Silicon MLX local inference telemetry.
+- 🛡️ **Forensic Agent Sandbox:** Telemetry visualizer for macOS kernel sandboxing and local inference execution.
 
 ---
 

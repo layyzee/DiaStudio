@@ -1,7 +1,7 @@
 {
-  "name": "dia-studio",
+  "name": "agilelens-ai",
   "private": true,
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --port 5182 --host 0.0.0.0",
